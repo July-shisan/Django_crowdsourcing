@@ -4,6 +4,8 @@
 
 #### python 3.7
 
+#### Pycharm Professional
+
 #### mysql
 
 #### python manage.py runserver
