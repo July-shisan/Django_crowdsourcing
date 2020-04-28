@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-two-thirds">
+                    <h2 class="title is-4">{{ challenge.title }}</h2>
+                    <div class="box">
+                        <p>{{ challenge.requirment }}</p>
+                        <br>
+                        <p>release time: {{ challenge.release_time }}</p>
+                    </div>
+                    <br>
+                    <h2 class="title is-4">Developers Recommendation</h2>
+                    <div class="box">
+                        <h3 class="title is-5">Developer A</h3>
+                        <em>No ranking yet. Vote on nominations to increase your rank.</em>
+                        <br>
+                        <br>
+                        <div class="columns is-mobile">
+                            <div class="column">
+                                <a href="/tribune">Learn more</a>
+                            </div>
+                            <div class="column is-narrow">
+                                <a href="/tribune/nominate">👍 Invite</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <h3 class="title is-5">Developer B</h3>
+                        <em>No ranking yet. Vote on nominations to increase your rank.</em>
+                        <br>
+                        <br>
+                        <div class="columns is-mobile">
+                            <div class="column">
+                                <a href="/tribune">Learn more</a>
+                            </div>
+                            <div class="column is-narrow">
+                                <a href="/tribune/nominate">👍 Invite</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <h2 class="title is-4">Similar Tasks</h2>
+                    <div class="box">
+                        <h3 class="title is-5">Lynx Calendar</h3>
+                        <p>Lynx Calendar has just completed the specification contest for the Lynx Calendar service application layer.</p>
+                    </div>
+                    <div class="box">
+                        <h3 class="title is-5">Cockpit Release </h3>
+                        <p>In this assembly you will start with the existing TopCoder application and
+                            you will apply the changes/updates/additions that are documented in each of the issues listed here.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

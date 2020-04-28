@@ -1,0 +1,44 @@
+{% extends 'base.html'%}
+{% block body %}
+<section class="hero is-info is-light">
+  <div class="hero-body">
+      <div class="columns">
+          <div class="column">
+              <div class="field is-grouped is-grouped-centered">
+                  <form method="get" action="/search" id="searchform">
+                      <input class="input" name="q" placeholder="Search a task" size="45">
+                  </form>
+                  <input type="submit" class="button is-primary" form="searchform" value="Search">
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+  </section>
+<div class="section">
+        <div class="container">
+                {% if query %}
+                    {% for item in page %}
+                        <li class="box">
+                            <div class="media-content">
+                                <div class="content">
+                                    <div class="title-columns columns is-gapless is-mobile">
+                                        <div class="column">
+                                            <h3 class="title is-4">
+                                                <a class="prefetch" href="/task/{{ item.object.chId }}">
+                                                    <span class="badge-verified"></span>{{ item.object.title }}</a>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        {% empty %}
+                        <p>啥也没找到</p>
+                    {% endfor %}
+                    {% else %}
+                        <p>Nothing to search!</p>
+                {% endif %}
+        </div>
+    </div>
+{% endblock %}

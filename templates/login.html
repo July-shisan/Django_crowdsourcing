@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="section">
+    <div class="container">
+        <div class="column is-three-fifths is-offset-one-fifth">
+        <li class="box">
+            <div class="columns is-centered">
+                <div class="column is-two-thirds-desktop is-two-thirds-tablet">
+                    <form action="" method="post" accept-charset="UTF-8">
+                        {% csrf_token %}
+                        <input name="authenticity_token" type="hidden" value="">
+                        <h3 class="title text-center">Login</h3>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Username</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <input name="username" class="input" type="text" value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Password</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <input name="password" class="input" type="password" value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal"></div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="columns is-mobile">
+                                        <div class="column">
+                                            <a href="/register">Register</a>
+                                        </div>
+                                        <div class="column is-narrow">
+                                            <a href="#">Forgotten Password</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control"><input class="button is-success" type="submit" value="Log in">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+{#                        <div class="blank-space"></div>#}
+{#                        <div class="text-right">#}
+{#                            <a class="text-next-to-button" href="/register">Register</a>#}
+{#                            <br>#}
+{#                            <a class="text-next-to-button" href="#">Forgotten Password</a>#}
+{#                        </div>#}
+                    </form>
+                </div>
+            </div>
+        </li>
+        </div>
+    </div>
+</div>
+{% endblock %}

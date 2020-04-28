@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <div class="box">
+                        <h2 class="title is-4">Profile</h2>
+                        <form action="" method="post" accept-charset="UTF-8">
+                            <input name="authenticity_token" type="hidden">
+                            <div class="field info-field is-horizontal">
+                                <div class="field-label">
+                                    <label class="label">Email</label>
+                                </div>
+                                <div class="field-body">
+                                    {{user.email}}
+                                </div>
+                            </div>
+                            <div class="field info-field is-horizontal">
+                                <div class="field-label">
+                                    <label class="label">Username</label>
+                                </div>
+                                <div class="field-body">
+                                    {{ user.username }}
+                                </div>
+                            </div>
+
+                            <div class="field info-field is-horizontal">
+                                <div class="field-label">
+                                    <label class="label">Frame</label>
+                                </div>
+                                <div class="field-body">
+                                    {{ user.frame }}
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">signature</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control"><textarea name="signature" class="textarea" id="signature" rows="4"></textarea>
+                                        </div>
+                                        <p class="help">Will be shown on your public page</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control"><input class="button is-success" type="submit"
+                                                                    value="Update">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+{#                            <div class="content text-right">#}
+{#                                <a href="/profile/change_password">Change Password</a>#}
+{#                            </div>#}
+                        </form>
+                    </div>
+                    <br>
+                    <h3 class="title is-4">Recommend Challenge For You</h3>
+                    <div class="box">
+                        <h3 class="title is-5">Challenge A</h3>
+                        <em>No ranking yet. Vote on nominations to increase your rank.</em>
+                        <br>
+                        <br>
+                        <div class="columns is-mobile">
+                            <div class="column">
+                                <a href="#">Learn more</a>
+                            </div>
+                            <div class="column is-narrow">
+                                <a href="#">👍 Vote on nominations</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <h3 class="title is-5">Challenge B</h3>
+                        <em>No ranking yet. Vote on nominations to increase your rank.</em>
+                        <br>
+                        <br>
+                        <div class="columns is-mobile">
+                            <div class="column">
+                                <a href="#">Learn more</a>
+                            </div>
+                            <div class="column is-narrow">
+                                <a href="#">👍 Vote on nominations</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <h2 class="title is-4">Your History</h2>
+                    {% for hist in history %}
+                        <div class="box">
+                        <h4 class="title is-5">{{hist.title}}</h4>
+                        <p>{{ hist.requirment }}</p>
+                        <br>
+                        <p>release time: {{ hist.release_time }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

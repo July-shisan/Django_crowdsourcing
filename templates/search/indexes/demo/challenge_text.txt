@@ -1,0 +1,4 @@
+# 这里的对象可以自己写任意多个
+{{ object.chId }}
+{{ object.title }}
+{{ object.requirment }}

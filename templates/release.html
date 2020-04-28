@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block body %}
+<section class="hero is-info is-light">
+  <div class="hero-body">
+      <div class="columns">
+          <div class="column is-10 is-offset-1">
+              <section class="hero landing-left">
+                      <div>
+                          <h3 class="title has-text-centered ">
+                              <p>Make Things Easier!</p>
+                          </h3>
+                      </div>
+              </section>
+          </div>
+      </div>
+  </div>
+  </div>
+  </section>
+    <div class="section">
+        <div class="container">
+            <li class="box">
+                <div class="columns is-centered">
+                    <div class="column is-half-desktop is-two-thirds-tablet">
+                        <form class="" action="" method="post" accept-charset="UTF-8">
+                            {% csrf_token %}
+{#                            <input name="authenticity_token" type="hidden" value="">#}
+                            <p>Release a challenge or
+                                <a class="text-next-to-button" href="#">a task</a>
+                            </p>
+                            <br>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Title</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input class="input" name="title" type="text" placeholder="give a brief description" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Requirment</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <textarea class="textarea" name="requirment" placeholder="detailed requirments"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Reward</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input class="input" name="award" type="text" placeholder="$" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">附件上传</label>
+                                </div>
+                                <div class="field-body">
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <div class="content is-small">
+                                                <span class="gradient-highlight">Please note that all submitted products go through an approval process.</span>
+                                            </div>
+                                            <input class="button is-success" type="submit" value="Submit">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </li>
+        </div>
+      </div>
+
+{% endblock %}

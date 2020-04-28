@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="section">
+    <div class="container">
+        <div class="column is-8 is-offset-2">
+            <li class="box">
+                <div class="columns is-centered">
+                    <div class="column is-four-fifths-desktop is-two-thirds-tablet">
+                        <form method="post" enctype="multipart/form-data" action="{% url 'register' %}">
+                            {% csrf_token %}
+                            <p>Register as a user or
+                                <a class="text-next-to-button" href="#">as a developer</a>
+                            </p>
+                            <br>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Username</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input name="username" class="input" id="" type="text">
+                                            <div class="help">You can use only <b>letters, digits and dashes</b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Password</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input name="password" class="input" id="" type="password">
+                                            <div class="help">Please use a secure password that includes:
+                                                <b>letters, digits and special symbols</b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Confirmation</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input name="password_confirmation" class="input" id="" type="password">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Email</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control"><input name="email" class="input" id="" type="email">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal"></div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            You already have an account? <a href="/login">Login</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal"></div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input class="button is-success" type="submit" value="Register">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </li>
+        </div>
+    </div>
+</div>
+{% endblock %}

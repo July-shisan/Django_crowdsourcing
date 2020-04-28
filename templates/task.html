@@ -1,0 +1,37 @@
+{% extends 'base.html'%}
+{% block body %}
+<div class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-three-fifths is-offset-one-fifth">
+                    <div class="box">
+                        <div class="columns">
+                            <div class="column is-three-quarters">
+                            <h3 class="title is-4">{{task.title}}</h3>
+                            </div>
+                            <div class="column">
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="button is-primary" type="submit" value="Join">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <h3 class="title is-5">Requirments</h3>
+                        <p>{{ task.requirment }}</p>
+                        <br>
+                        <h3 class="title is-5">Reward</h3>
+                        <p></p>
+                        <h3 class="title is-5">Deadline</h3>
+                        <p></p>
+                        <h3 class="title is-5">Contact</h3>
+                        <p>{{ hoster.username }}</p>
+                        <p>{{ hoster.email }}</p>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
