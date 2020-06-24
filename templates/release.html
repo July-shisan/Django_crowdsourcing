@@ -30,6 +30,27 @@
                             <br>
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
+                                    <label class="label">Tasktype</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="control">
+                                        <label class="radio">
+                                            <input type="radio" name="chtype" value="Bug Hunt">Bug Hunt
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" name="chtype" value="Test suites">Test suites
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" name="chtype" value="Architecture">Architecture
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" name="chtype" value="Conceptualization">Conceptualization
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
                                     <label class="label">Title</label>
                                 </div>
                                 <div class="field-body">
@@ -54,12 +75,46 @@
                             </div>
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
+                                    <label class="label">Technology</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input class="input" name="technology" type="text" placeholder="" value="" id="technology">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label"></label>
+                                </div>
+                                <div class="field-body">
+                                    <script>
+                                        function tag(dom) {
+                                            var value = dom.getAttribute('name')
+                                            var txt = document.getElementById('technology').value
+                                            document.getElementById('technology').value = txt + value + ' '
+                                        }
+                                    </script>
+                                    <div class="tags">
+                                        <span class="tag is-primary is-light" name="Java" onclick="tag(this)">Java</span>
+                                        <span class="tag is-link is-light" name="JavaScript" onclick="tag(this)">JavaScript</span>
+                                        <span class="tag is-info is-light" name="HTML" onclick="tag(this)">HTML</span>
+                                        <span class="tag is-success is-light" name="CSS" onclick="tag(this)">CSS</span>
+                                        <span class="tag is-warning is-light" name="J2EE" onclick="tag(this)">J2EE</span>
+                                        <span class="tag is-danger is-light" name="Spring" onclick="tag(this)">Spring</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
                                     <label class="label">Reward</label>
                                 </div>
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <input class="input" name="award" type="text" placeholder="$" value="">
+                                            <input class="input" name="award" type="text" placeholder="$" value="1000">
                                         </div>
                                     </div>
                                 </div>
@@ -69,6 +124,17 @@
                                     <label class="label">附件上传</label>
                                 </div>
                                 <div class="field-body">
+                                    <div class="file">
+                                        <label class="file-label">
+                                            <input class="file-input" type="file" name="resume">
+                                            <span class="file-cta">
+                                                <span class="file-icon">
+                                                    <i class="fas fa-upload"></i>
+                                                </span>
+                                                <span class="file-label">Choose a file…</span>
+                                            </span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="field is-horizontal">

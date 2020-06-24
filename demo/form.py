@@ -31,4 +31,4 @@ class challengeForm(forms.ModelForm):
     class Meta:
         model = Challenge
         # fields = "__all__"
-        fields = {'title', 'requirment', 'award'}
+        fields = {'title', 'requirment', 'award', 'chtype', 'technology'}

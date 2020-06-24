@@ -28,9 +28,11 @@ class Developer(models.Model):
 class Challenge(models.Model):
     chId = models.AutoField(primary_key=True)
     type = models.BooleanField(default=0)
+    chtype = models.CharField(max_length=100, null=True)
     title = models.CharField(max_length=100, null=False)
     requirment = models.TextField()
     award = models.IntegerField(default=0)
+    technology = models.CharField(max_length=100, null=True)
     viewer_num = models.IntegerField(default=0)
     release_time = models.DateField(auto_now_add=True)
     status = models.BooleanField(default=0)

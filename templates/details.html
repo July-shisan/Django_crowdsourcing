@@ -12,34 +12,22 @@
                     </div>
                     <br>
                     <h2 class="title is-4">Developers Recommendation</h2>
-                    <div class="box">
-                        <h3 class="title is-5">Developer A</h3>
-                        <em>No ranking yet. Vote on nominations to increase your rank.</em>
-                        <br>
-                        <br>
-                        <div class="columns is-mobile">
-                            <div class="column">
-                                <a href="/tribune">Learn more</a>
-                            </div>
-                            <div class="column is-narrow">
-                                <a href="/tribune/nominate">👍 Invite</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <h3 class="title is-5">Developer B</h3>
-                        <em>No ranking yet. Vote on nominations to increase your rank.</em>
-                        <br>
-                        <br>
-                        <div class="columns is-mobile">
-                            <div class="column">
-                                <a href="/tribune">Learn more</a>
-                            </div>
-                            <div class="column is-narrow">
-                                <a href="/tribune/nominate">👍 Invite</a>
+                    {% for n in name %}
+                        <div class="box">
+                            <h3 class="title is-5"}}>{{ n.devename }}</h3>
+                            <em>{{ n.email }}</em>
+                            <br>
+                            <br>
+                            <div class="columns is-mobile">
+                                <div class="column">
+                                    <a href="/developer/{{ n.deveId }}">Learn more</a>
+                                </div>
+                                <div class="column is-narrow">
+                                    <a href="#">👍 Invite</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    {% endfor %}
                 </div>
                 <div class="column">
                     <h2 class="title is-4">Similar Tasks</h2>

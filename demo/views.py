@@ -4,9 +4,12 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse
 from .form import registerForm, loginForm, challengeForm
 # Create your views here.
-from demo.models import User, Challenge
+from demo.models import User, Challenge, Developer
 from django.views.generic import View
 from django.db import connection
+from ML_Models.recommend import recommend
+from ML_Models.developerRec import developerRec
+from django.http import HttpResponseRedirect
 
 
 # def home(request):
@@ -34,6 +37,7 @@ class releaseView(View):
         user = User.objects.get(pk=user_id)
         if form.is_valid():
             chal = form.save(commit=False)
+            # chal.chtype = request.POST.get('chtype')
             chal.hoster = user
             chal.save()
             request.session['chId'] = chal.chId
@@ -42,14 +46,25 @@ class releaseView(View):
             print(form.errors.get_json_data())
             return redirect(reverse('release'))
 
-def developer(request):
+def alldeveloper(request):
     return render(request, 'developers.html')
 def details(request):
     ch_id = request.session.get('chId')
-    chellenge = Challenge.objects.get(pk=ch_id)
+    challenge = Challenge.objects.get(pk=ch_id)
+    # recdevelopers = recommend(challenge)
+    recdevelopers = developerRec(challenge)
+    names = []
+    i = 0
+    for d in recdevelopers:
+        i += 1
+        if i >= 5:
+            break
+        developer = Developer.objects.get(devename=d)
+        names.append(developer)
     data = {
         "title": "Details",
-        "challenge": chellenge,
+        "challenge": challenge,
+        "name": names,
     }
     return render(request, 'details.html', context=data)
 def task(request, taskId):
@@ -61,6 +76,14 @@ def task(request, taskId):
         "hoster": task.hoster
     }
     return render(request, 'task.html', context=data)
+
+def developer(request, deveId):
+    id = int(deveId)
+    deve = Developer.objects.get(deveId=id)
+    data = {
+        "deve": deve,
+    }
+    return render(request, 'developerDetail.html', context=data)
 # def register(request):
 #     if request.method == 'GET':
 #         data = {
@@ -109,10 +132,13 @@ class loginView(View):
             user = User.objects.filter(username=username, password=password).first()
             if user:
                 request.session['user_id'] = user.userId
-                return redirect(reverse('home'))
+                response = redirect(reverse('home'))
+                response.set_cookie("username", username)
+                response.set_cookie("password", password)
+                return response
             else:
                 print('用户名或密码错误')
-                return  redirect(reverse('login'))
+                return redirect(reverse('login'))
         else:
             print(form.errors.get_json_data())
             return redirect(reverse('login'))

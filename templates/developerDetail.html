@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <div class="box">
+                        <h2 class="title is-4">Profile</h2>
+                        <form action="" method="post" accept-charset="UTF-8">
+                            <input name="authenticity_token" type="hidden">
+                            <div class="field info-field is-horizontal">
+                                <div class="field-label">
+                                    <label class="label">Email</label>
+                                </div>
+                                <div class="field-body">
+                                    {{deve.email}}
+                                </div>
+                            </div>
+                            <div class="field info-field is-horizontal">
+                                <div class="field-label">
+                                    <label class="label">Username</label>
+                                </div>
+                                <div class="field-body">
+                                    {{ deve.devename }}
+                                </div>
+                            </div>
+
+                            <div class="field info-field is-horizontal">
+                                <div class="field-label">
+                                    <label class="label">Frame</label>
+                                </div>
+                                <div class="field-body">
+                                    {{ deve.frame }}
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">signature</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control"><textarea name="signature" class="textarea" id="signature" rows="4"></textarea>
+                                        </div>
+                                        <p class="help">Will be shown on your public page</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control"><input class="button is-success" type="submit"
+                                                                    value="Update">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <br>
+                </div>
+                <div class="column">
+                    <h2 class="title is-4">His History</h2>
+{#                    {% for hist in history %}#}
+{#                        <div class="box">#}
+{#                        <h4 class="title is-5">{{hist.title}}</h4>#}
+{#                        <p>{{ hist.requirment }}</p>#}
+{#                        <br>#}
+{#                        <p>release time: {{ hist.release_time }}</p>#}
+{#                    </div>#}
+{#                    {% endfor %}#}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

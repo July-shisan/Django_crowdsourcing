@@ -16,12 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from demo import views
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', views.home),
     path('', views.homeView.as_view(), name='home'),
-    path('developer/', views.developer),
+    path('alldeveloper/', views.alldeveloper),
+    path('workbench/', RedirectView.as_view(url='http://www.baidu.com')),
     # path('release/', views.release),
     path('release/', views.releaseView.as_view(), name='release'),
     path('details/', views.details, name='details'),
@@ -31,6 +33,7 @@ urlpatterns = [
     path('profile/<userId>', views.profile, name='profile'),
     # path('task/', views.task, name='task'),
     path('task/<taskId>', views.task, name='task'),
+    path('developer/<deveId>', views.developer, name='deve'),
     path('search', include('haystack.urls')),
     # path('login/', views.login),
 ]
