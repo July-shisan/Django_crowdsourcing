@@ -156,7 +156,6 @@ def developerRec(challenge):
     data.append(challenge.requirment)
     data.append(10)
     tec = str(challenge.technology).replace(' ', ',')
-    print(tec)
     data.append(tec)
     data.append(tec)
     data.append(challenge.award)
