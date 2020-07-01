@@ -74,7 +74,6 @@ class PolicyModel:
         winModels = []
 
         tasktype = self.tasktype
-
         regModel = self.availableModels[int(a1)]()
         subModel = self.availableModels[int(a2)]()
         winModel = self.availableModels[int(a3)]()
@@ -98,10 +97,10 @@ class PolicyModel:
         subYs=[]
         winYs=[]
 
-        taskNum = len(X)//len(self.userIndex) # 219
-        userNum = len(self.userIndex) # 212
+        taskNum = len(X)//len(self.userIndex)   # 219
+        userNum = len(self.userIndex)   # 212
 
-        regModel, subModel, winModel = regModels[int(a1)], subModels[int(a2)], winModels[int(a3)]
+        # regModel, subModel, winModel = regModels[int(a1)], subModels[int(a2)], winModels[int(a3)]
         regY = regModel.predict(X)
         subY = subModel.predict(X)
         winY = winModel.predict(X)
@@ -149,25 +148,6 @@ def getBestPerformance(metadata, tasktype):
          pickle.dump(feature, f)
     return a1, a2, a3, top_r, top_s
 
-def generateSearchData(saveData=True, tasktype=''):
-    predictUsers = []
-    if saveData:
-        with open(path + "/data/MetaData/" + tasktype + ".pkl", "rb") as f:
-            metafeatures = pickle.load(f)
-        feature = np.array(metafeatures, dtype=np.float32)
-        getBestPerformance(feature, tasktype)
-    else:
-        with open(path + "/data/FeatureData/" + tasktype + ".pkl", "rb") as f:
-            metafeatures = pickle.load(f)
-        feature = np.array(metafeatures, dtype=np.float32)
-        a1, a2, a3, top_r, top_s = feature
-        regY = regYs[int(a1)]
-        subY = subYs[int(a2)]
-        winY = winYs[int(a3)]
-        name = model.predictUsers(regY, subY, winY, top_r, top_s)
-        return name
-
-    return predictUsers
 def developerRec(challenge):
     data = []
     # tashid, title,detail, duration, tec, lan, prize, startdate, diffdeg, tasktype
@@ -176,6 +156,7 @@ def developerRec(challenge):
     data.append(challenge.requirment)
     data.append(10)
     tec = str(challenge.technology).replace(' ', ',')
+    print(tec)
     data.append(tec)
     data.append(tec)
     data.append(challenge.award)
@@ -198,4 +179,5 @@ def developerRec(challenge):
     model = PolicyModel(dataType)
     regYs, subYs, winYs, top_r, top_s = model.TuneTempResults(data.testX, False)  # 测试数据
     username = model.predictUsers(regYs[0], subYs[0], winYs[0], top_r, top_s)
+    print(username)
     return username

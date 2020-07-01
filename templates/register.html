@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 {% block body %}
+    {% if messages %}
+        <script>
+            {% for msg in messages %}
+                alert('{{ msg.message }}');
+            {% endfor %}
+        </script>
+    {% endif %}
 <div class="section">
     <div class="container">
         <div class="column is-8 is-offset-2">

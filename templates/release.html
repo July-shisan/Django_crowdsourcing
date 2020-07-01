@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 {% block body %}
+    {% if messages %}
+        <script>
+            {% for msg in messages %}
+                alert('{{ msg.message }}');
+            {% endfor %}
+        </script>
+    {% endif %}
 <section class="hero is-info is-light">
   <div class="hero-body">
       <div class="columns">
@@ -114,7 +121,7 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <input class="input" name="award" type="text" placeholder="$" value="1000">
+                                            <input class="input" name="award" type="text" placeholder="$" value="0">
                                         </div>
                                     </div>
                                 </div>
@@ -157,5 +164,4 @@
             </li>
         </div>
       </div>
-
 {% endblock %}

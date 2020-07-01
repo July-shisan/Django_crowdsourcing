@@ -10,7 +10,8 @@ from django.db import connection
 from ML_Models.recommend import recommend
 from ML_Models.developerRec import developerRec
 from django.http import HttpResponseRedirect
-
+from django.contrib import messages
+from django.core.paginator import Paginator
 
 # def home(request):
 #     return render(request, 'home.html')
@@ -19,8 +20,14 @@ def get_corsor():
 
 class homeView(View):
     def get(self, request):
+        page = int(request.GET.get("page", 1))
+        per_page = int(request.GET.get("per_page", 5))
         challenge = Challenge.objects.all().order_by('-release_time')
+        paginator = Paginator(challenge, per_page)
+        page_object = paginator.page(page)
         data = {
+            "page_object": page_object,
+            "page_range": paginator.page_range,
             "title": "BUAA",
             "challenge": challenge,
         }
@@ -44,6 +51,7 @@ class releaseView(View):
             return redirect(reverse('details'))
         else:
             print(form.errors.get_json_data())
+            messages.success(request, "请填写完整信息！")
             return redirect(reverse('release'))
 
 def alldeveloper(request):
@@ -106,6 +114,7 @@ def developer(request, deveId):
 #     return render(request, 'login.html')
 def logout(request):
     request.session.flush()
+    messages.success(request, "已退出登录！")
     return redirect(reverse('home'))
 def profile(request, userId):
     id = int(userId)
@@ -138,6 +147,7 @@ class loginView(View):
                 return response
             else:
                 print('用户名或密码错误')
+                messages.success(request, "用户名或密码错误!")
                 return redirect(reverse('login'))
         else:
             print(form.errors.get_json_data())
@@ -158,4 +168,5 @@ class registerView(View):
         else:
             errors = form.errors
             print(errors)
+            messages.success(request, "填写信息无效！")
             return redirect(reverse('register'))

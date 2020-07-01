@@ -45,6 +45,6 @@ class Task(models.Model):
     title = models.CharField(max_length=100, null=False)
     requirment = models.TextField()
     viewer_num = models.IntegerField(default=0)
-    release_time = models.DateField(auto_now_add = True)
+    release_time = models.DateField(auto_now_add=True)
     # release_time = models.DateField(default=datetime.datetime.now().strftime('%Y-%m-%d'))
     status = models.BooleanField(default=0)

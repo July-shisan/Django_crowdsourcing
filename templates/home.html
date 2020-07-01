@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 {% block body %}
+    {% if messages %}
+        <script>
+            {% for msg in messages %}
+                alert('{{ msg.message }}');
+            {% endfor %}
+        </script>
+    {% endif %}
   <section class="hero is-medium is-info is-light">
   <div class="hero-body">
       <div class="columns">
@@ -64,14 +71,14 @@
                     </ul>
                   </div>
                 <ol class="services-list">
-                    {% for foo in challenge %}
+                    {% for challenge in page_object.object_list %}
                     <li class="box">
                         <div class="media-content">
                             <div class="content">
                                 <div class="title-columns columns is-gapless is-mobile">
                                     <div class="column">
                                         <h3 class="title is-4">
-                                            <a class="prefetch" href="/task/{{ foo.chId }}"><span class="badge-verified"></span>{{foo.title}}</a>
+                                            <a class="prefetch" href="/task/{{ challenge.chId }}"><span class="badge-verified"></span>{{challenge.title}}</a>
                                         </h3>
                                     </div>
                                 </div>
@@ -79,16 +86,45 @@
                             </div>
                             <div class="columns is-mobile">
                                 <div class="column">
-                                    <p>viewer numbers: {{ foo.viewer_num }}</p>
+                                    <p>viewer numbers: {{ challenge.viewer_num }}</p>
                                 </div>
                                 <div class="column is-narrow">
-                                    <p>release time: {{ foo.release_time }}</p>
+                                    <p>release time: {{ challenge.release_time }}</p>
                                 </div>
                             </div>
                         </div>
                     </li>
                     {% endfor %}
                 </ol>
+              <br>
+                  <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                      {% if page_object.has_previous %}
+                          <a class="pagination-previous"
+                             href="?page={{ page_object.previous_page_number }}">Previous</a>
+                      {% else %}
+                          <li class="is-disabled">
+                              <a class="pagination-previous">Previous</a>
+                          </li>
+                      {% endif %}
+
+                      {% if page_object.has_next %}
+                          <a class="pagination-next" href="?page={{ page_object.next_page_number }}">Next page</a>
+                      {% else %}
+                          <li>
+                              <a class="pagination-next">Next page</a>
+                          </li>
+                      {% endif %}
+                      <ul class="pagination-list">
+                          {% for page_index in page_range %}
+                              {% ifequal page_index page_object.number %}
+                                  <li><a class="pagination-link is-current" href="#" aria-label=""
+                                         aria-current="page">{{ page_index }}</a></li>
+                              {% else %}
+                                  <li><a class="pagination-link" href="?page={{ page_index }}">{{ page_index }}</a></li>
+                              {% endifequal %}
+                          {% endfor %}
+                      </ul>
+                  </nav>
               </main>
                 <aside class="column is-narrow sidebar">
                     <h3 class="title boxed-section-title is-2 text-center">&nbsp;</h3>
@@ -126,5 +162,14 @@
             </div>
         </div>
   </div>
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+                <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+                is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+            </p>
+        </div>
+    </footer>
 
 {% endblock %}

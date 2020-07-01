@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 from django.shortcuts import render, redirect, reverse
-
+from django.contrib import messages
 from demo.models import User
 
 REQUIRE_LOGIN = [
@@ -24,6 +24,7 @@ class FrontUserMiddleware(object):
                 except:
                     return redirect(reverse('login'))
             else:
+                messages.success(request, "log in first!")
                 return redirect(reverse('login'))
         response = self.get_response(request)
         return response
