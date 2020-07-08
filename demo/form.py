@@ -32,12 +32,13 @@ class challengeForm(forms.ModelForm):
         title = cleaned_data.get('title')
         req = cleaned_data.get('requirment')
         if cleaned_data.get('technology') == '':
-            pre_tec = pre_technology(title, req)
-            tec = ''
-            for i in pre_tec:
-                tec += i
-                tec += ' '
-            cleaned_data['technology'] = tec.strip()
+            if title is not None and req is not None:
+                pre_tec = pre_technology(title, req)
+                tec = ''
+                for i in pre_tec:
+                    tec += i
+                    tec += ' '
+                cleaned_data['technology'] = tec.strip()
         return cleaned_data
     class Meta:
         model = Challenge

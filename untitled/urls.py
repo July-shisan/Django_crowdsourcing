@@ -24,6 +24,7 @@ urlpatterns = [
     path('', views.homeView.as_view(), name='home'),
     path('alldeveloper/', views.alldeveloper),
     path('workbench/', RedirectView.as_view(url='http://www.baidu.com')),
+    path('resource/', RedirectView.as_view(url='http://www.baidu.com')),
     # path('release/', views.release),
     path('release/', views.releaseView.as_view(), name='release'),
     path('details/', views.details, name='details'),

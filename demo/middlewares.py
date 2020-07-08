@@ -24,7 +24,7 @@ class FrontUserMiddleware(object):
                 except:
                     return redirect(reverse('login'))
             else:
-                messages.success(request, "log in first!")
+                messages.success(request, "Log In First!")
                 return redirect(reverse('login'))
         response = self.get_response(request)
         return response
