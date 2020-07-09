@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse
 from .form import registerForm, loginForm, challengeForm
 # Create your views here.
-from demo.models import User, Challenge, Developer
+from home.models import User, Challenge, Developer
 from django.views.generic import View
 from django.db import connection
 from ML_Models.recommend import recommend

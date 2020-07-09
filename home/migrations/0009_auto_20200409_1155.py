@@ -7,14 +7,14 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('demo', '0008_auto_20200401_1755'),
+        ('home', '0008_auto_20200401_1755'),
     ]
 
     operations = [
         migrations.AddField(
             model_name='challenge',
             name='hoster',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='demo.User'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='home.User'),
         ),
         migrations.AlterField(
             model_name='challenge',

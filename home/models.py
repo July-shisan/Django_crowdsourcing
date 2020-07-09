@@ -12,8 +12,8 @@ class User(models.Model):
     email = models.EmailField(null=True)
     frame = models.IntegerField(default=50)
     register_time = models.DateField(auto_now_add=True)
-    # class Meta:
-    #     db_table = 'User'
+    class Meta:
+        db_table = 'User'
 
 class Developer(models.Model):
     deveId = models.AutoField(primary_key=True)
@@ -24,6 +24,9 @@ class Developer(models.Model):
     email = models.EmailField()
     frame = models.IntegerField(default=100)
     register_time = models.DateField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'Developer'
 
 class Challenge(models.Model):
     chId = models.AutoField(primary_key=True)
@@ -37,6 +40,8 @@ class Challenge(models.Model):
     release_time = models.DateField(auto_now_add=True)
     status = models.BooleanField(default=0)
     hoster = models.ForeignKey('User', on_delete=models.CASCADE, null=True)
+    class Meta:
+        db_table = 'Challenge'
 
 
 class Task(models.Model):
@@ -48,3 +53,6 @@ class Task(models.Model):
     release_time = models.DateField(auto_now_add=True)
     # release_time = models.DateField(default=datetime.datetime.now().strftime('%Y-%m-%d'))
     status = models.BooleanField(default=0)
+
+    class Meta:
+        db_table = 'Task'
