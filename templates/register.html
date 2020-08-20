@@ -15,8 +15,8 @@
                     <div class="column is-four-fifths-desktop is-two-thirds-tablet">
                         <form method="post" enctype="multipart/form-data" action="{% url 'register' %}">
                             {% csrf_token %}
-                            <p>Register as a user or
-                                <a class="text-next-to-button" href="#">as a developer</a>
+                            <p>Register as a user or as a
+                                <a class="text-next-to-button" href="/deveregister">developer</a>
                             </p>
                             <br>
                             <div class="field is-horizontal">

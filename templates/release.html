@@ -1,5 +1,71 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block body %}
+    <script>
+    window.onload = function(ev){
+        var myTxt = document.getElementById('technology');
+        var tag = document.getElementById('mytag');
+        var details = document.getElementById('details');
+        var btn = document.querySelector('button');
+        {#btn.onclick = function (ev2) {#}
+        {#        ajaxbg.show();#}
+        {#    }#}
+        details.onchange = function (ev2) {
+            var title = document.getElementById('title').value;
+            $.ajax({
+                type: "POST",
+                url: "/pred_tech/",
+                data: {csrfmiddlewaretoken:'{{ csrf_token }}', title:title, details:details.value},
+                success: function (msg) {
+                    tag.setAttribute('name', msg);
+                    {#tag.setAttribute('id', msg);#}
+                    tag.innerText = msg;
+                    {#alert(tag.name);#}
+                },
+                error: function (xhr) {
+                    alert(xhr.status);
+                }
+            });
+        }
+    }
+    </script>
+    <style type="text/css">
+        .background {
+            display: block;
+            height: 100%;
+            width: 100%;
+            opacity: 0.7;
+            filter: alpha(opacity=70);
+            background: white no-repeat;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .loading-img {
+            display: block;
+            width: 100px;
+            height: 100px;
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            z-index: 2001;
+        }
+
+        .txt {
+            display: block;
+            position: fixed;
+            top: 50%;
+            left: 48%;
+            line-height: 27px;
+            font-weight: bold;
+            z-index: 2000;
+        }
+    </style>
+    <div id="background" class="background" style="display: none;"></div>
+    <div id="loading" class="loading-img" style="display: none;"><img src="{% static 'images/44.gif' %}" alt="loading" ></div>
+    <div id="intro" class="txt" style="display: none;">正在为您推荐开发者...</div>
     {% if messages %}
         <script>
             {% for msg in messages %}
@@ -28,7 +94,13 @@
             <li class="box">
                 <div class="columns is-centered">
                     <div class="column is-half-desktop is-two-thirds-tablet">
-                        <form class="" action="" method="post" accept-charset="UTF-8">
+                        <script>
+                            var ajaxbg = $("#background, #loading, #intro");
+                            function loading() {
+                                ajaxbg.show();
+                            }
+                        </script>
+                        <form class="" action="" name="myform" method="post" accept-charset="UTF-8" id="form1" onsubmit="loading()">
                             {% csrf_token %}
 {#                            <input name="authenticity_token" type="hidden" value="">#}
                             <p>Release a challenge or
@@ -36,46 +108,49 @@
                             </p>
                             <br>
                             <div class="field is-horizontal">
+                                <span style="color:red">*</span>
                                 <div class="field-label is-normal">
                                     <label class="label">Tasktype</label>
                                 </div>
                                 <div class="field-body">
                                     <div class="control">
                                         <label class="radio">
-                                            <input type="radio" name="chtype" value="Bug Hunt">Bug Hunt
+                                            <input type="radio" name="chtype" value="Bug Hunt">B
                                         </label>
                                         <label class="radio">
-                                            <input type="radio" name="chtype" value="Test suites">Test suites
+                                            <input type="radio" name="chtype" value="Test Suites">T
                                         </label>
                                         <label class="radio">
-                                            <input type="radio" name="chtype" value="Architecture">Architecture
+                                            <input type="radio" name="chtype" value="Architecture">A
                                         </label>
                                         <label class="radio">
-                                            <input type="radio" name="chtype" value="Conceptualization">Conceptualization
+                                            <input type="radio" name="chtype" value="Conceptualization">C
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="field is-horizontal">
+                                <span style="color:red">*</span>
                                 <div class="field-label is-normal">
                                     <label class="label">Title</label>
                                 </div>
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <input class="input" name="title" type="text" placeholder="Give a brief description" value="">
+                                            <input class="input" name="title" type="text" placeholder="Give a brief description" value="" id="title" required>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="field is-horizontal">
+                                <span style="color:red">*</span>
                                 <div class="field-label is-normal">
                                     <label class="label">Requirment</label>
                                 </div>
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <textarea class="textarea" name="requirment" placeholder="Detailed requirments", rows="10"></textarea>
+                                            <textarea class="textarea" name="requirment" placeholder="Detailed requirments" id="details" rows="10" required></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -92,26 +167,59 @@
                                     </div>
                                 </div>
                             </div>
+                            <script>
+                                function tag(dom) {
+                                    {#var value = dom.innerText;#}
+                                    var value = dom.getAttribute('name');
+                                    var txt = document.getElementById('technology').value;
+                                    document.getElementById('technology').value = txt + value + ' ';
+                                    var tec_str = document.getElementById('technology').value;
+                                    var obj = document.getElementsByClassName('tag is-primary is-light');
+                                    for (var i = 0; i < obj.length; i++) {
+                                        if (tec_str.indexOf(obj[i].innerText) != -1) {
+                                            obj[i].setAttribute('onclick', null);
+                                            obj[i].setAttribute('class', 'tag is-light');
+                                        }
+                                    }
+                                }
+                            </script>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label"></label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="tags">
+                                        <span class="tag is-primary is-light" name="JavaScript" onclick="tag(this)" id="JavaScript">JavaScript</span>
+                                        <span class="tag is-primary is-light" name="JAVA" onclick="tag(this)" id="JAVA">JAVA</span>
+                                        <span class="tag is-primary is-light" name="HTML" onclick="tag(this)" id="HTML">HTML</span>
+                                        <span class="tag is-primary is-light" name="CSS" onclick="tag(this)" id="CSS">CSS</span>
+                                        <span class="tag is-primary is-light" name="J2EE" onclick="tag(this)" id="J2EE">J2EE</span>
+                                        <span class="tag is-primary is-light" name="Spring" onclick="tag(this)" id="Spring">Spring</span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
                                     <label class="label"></label>
                                 </div>
                                 <div class="field-body">
                                     <script>
-                                        function tag(dom) {
-                                            var value = dom.getAttribute('name')
-                                            var txt = document.getElementById('technology').value
-                                            document.getElementById('technology').value = txt + value + ' '
+                                        function mytag(dom) {
+                                            var value = dom.getAttribute('name');
+                                            var txt = document.getElementById('technology').value;
+                                            document.getElementById('technology').value = txt + value + ' ';
+                                            var tec_str = document.getElementById('technology').value;
+                                            var obj = document.getElementsByClassName('tag is-primary is-light');
+                                            for(var i=0; i<obj.length; i++){
+                                                if(tec_str.indexOf(obj[i].innerText) != -1){
+                                                    obj[i].setAttribute('onclick', null);
+                                                    obj[i].setAttribute('class', 'tag is-light');
+                                                }
+                                            }
                                         }
                                     </script>
-                                    <div class="tags">
-                                        <span class="tag is-primary is-light" name="Java" onclick="tag(this)">Java</span>
-                                        <span class="tag is-link is-light" name="JavaScript" onclick="tag(this)">JavaScript</span>
-                                        <span class="tag is-info is-light" name="HTML" onclick="tag(this)">HTML</span>
-                                        <span class="tag is-success is-light" name="CSS" onclick="tag(this)">CSS</span>
-                                        <span class="tag is-warning is-light" name="J2EE" onclick="tag(this)">J2EE</span>
-                                        <span class="tag is-danger is-light" name="Spring" onclick="tag(this)">Spring</span>
-                                    </div>
+                                    为你推荐：
+                                    <span class="tag is-primary is-light" name="" id="mytag" onclick="mytag(this)"></span>
                                 </div>
                             </div>
                             <div class="field is-horizontal">
@@ -121,7 +229,7 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <input class="input" name="award" type="text" placeholder="$" value="0">
+                                            <input class="input" name="award" type="text" placeholder="$" value="0" required>
                                         </div>
                                     </div>
                                 </div>
@@ -135,9 +243,6 @@
                                         <label class="file-label">
                                             <input class="file-input" type="file" name="resume">
                                             <span class="file-cta">
-                                                <span class="file-icon">
-                                                    <i class="fas fa-upload"></i>
-                                                </span>
                                                 <span class="file-label">Choose a file…</span>
                                             </span>
                                         </label>
@@ -153,7 +258,8 @@
                                             <div class="content is-small">
                                                 <span class="gradient-highlight">Please note that all submitted products go through an approval process.</span>
                                             </div>
-                                            <input class="button is-success" type="submit" value="Submit">
+{#                                            <input class="button is-success" type="submit" value="Submit">#}
+                                            <button class="button is-success">Submit</button>
                                         </div>
                                     </div>
                                 </div>

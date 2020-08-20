@@ -3,6 +3,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
 from home.models import User
+from django.http import HttpResponseRedirect
 
 REQUIRE_LOGIN = [
     '/release/',
@@ -25,6 +26,7 @@ class FrontUserMiddleware(object):
                     return redirect(reverse('login'))
             else:
                 messages.success(request, "Log In First!")
-                return redirect(reverse('login'))
+                return redirect('/login/?next={}'.format(request.path))
+                # return redirect(reverse('login'))
         response = self.get_response(request)
         return response

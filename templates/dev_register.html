@@ -1,134 +1,216 @@
 {% extends 'base.html'%}
 {% block body %}
-<div class="section">
-        <div class="container">
-            <div class="columns">
-              <main class="column">
-                <ol class="services-list">
-                    <li class="box">
-                    <div class="columns is-centered">
-                    <div class="column is-half-desktop is-two-thirds-tablet">
-                        <p class="centered">Register as a developer or
-                        <a class="text-next-to-button" href="#">as a user</a>
-                        </p>
-                        <br>
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                            <label class="label">Username</label>
-                        </div>
-                        <div class="field-body">
-                             <div class="field">
-                                <div class="control"><input name="user[username]" class="input" id="user_username" type="text">
-                                    <div class="help">You can use only <b>letters, digits and dashes</b></div>
+    <div class="section">
+    <div class="container">
+        <div class="column is-8 is-offset-2">
+            <li class="box">
+                <div class="columns is-centered">
+                    <div class="column is-four-fifths-desktop is-two-thirds-tablet">
+                        <form method="post" enctype="multipart/form-data" action="{% url 'deveregister' %}">
+                            {% csrf_token %}
+                            <p>Register as a user or as a
+                                <a class="text-next-to-button" href="/register">user</a>
+                            </p>
+                            <br>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">name</label>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                            <label class="label">Password</label>
-                        </div>
-                        <div class="field-body">
-                            <div class="field">
-                                <div class="control"><input name="user[password]" class="input" id="user_password" type="password">
-                                    <div class="help">Please use a secure password that includes:
-                                        <b>letters, digits and special symbols</b>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input name="devename" class="input" id="" type="text">
+                                            <div class="help">You can use only <b>letters, digits and dashes</b>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                            <label class="label">Confirmation</label>
-                        </div>
-                        <div class="field-body">
-                            <div class="field">
-                                <div class="control"><input name="user[password_confirmation]" class="input" id="user_password_confirmation" type="password">
+
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Password</label>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                        <div class="field is-horizontal">
-                            <div class="field-label is-normal">
-                                <label class="label">Email</label>
-                            </div>
-                            <div class="field-body">
-                                <div class="field">
-                                    <div class="control"><input name="user[email]" class="input" id="user_email" type="email">
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input name="password" class="input" id="" type="password">
+                                            <div class="help">Please use a secure password that includes:
+                                                <b>letters, digits and special symbols</b>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="field is-horizontal">
-                            <div class="field-label is-normal">
-                                <label class="label">Introduction</label>
-                            </div>
-                            <textarea class="textarea" placeholder="Description yourself"></textarea>
-                        </div>
-
-                        <div class="field is-horizontal">
-                            <div class="field-label is-normal">
-                                <label class="label">Tags</label>
-                            </div>
-                            <div class="tags">
-                                  <span class="tag">One</span>
-                                  <span class="tag">Two</span>
-                                  <span class="tag">Three</span>
-                                  <span class="tag">Four</span>
-                                  <span class="tag">Five</span>
-                                  <span class="tag">Six</span>
-                                  <span class="tag">Seven</span>
-                                  <span class="tag">Eight</span>
-                                  <span class="tag">Nine</span>
-                                  <span class="tag">Ten</span>
-                                  <span class="tag">Eleven</span>
-                                  <span class="tag">Twelve</span>
-                                  <span class="tag">Thirteen</span>
-                                  <span class="tag">Fourteen</span>
-                                  <span class="tag">Fifteen</span>
-                                  <span class="tag">Sixteen</span>
-                                  <span class="tag">Seventeen</span>
-                                  <span class="tag">Eighteen</span>
-                                  <span class="tag">Nineteen</span>
-                                  <span class="tag">Twenty</span>
-                            </div>
-                        </div>
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                        </div>
-                        <div class="field-body">
-                            <div class="field">
-                                <div class="control"><label class="checkbox">
-                                    <input name="tribune_weekly" id="tribune_weekly" type="checkbox" value="1">
-                                    you agree with the <a href="/site/terms" target="_blank">terms of service</a>
-                                </label>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Confirmation</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input name="password_confirmation" class="input" id="" type="password">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                        </div>
-                        <div class="field-body">
-                            <div class="field">
-                                <div class="control">
-                                    <input class="button is-success" type="submit" value="Register">
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Email</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control"><input name="email" class="input" id="" type="email">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal"></div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            You already have an account? <a href="/develogin">Login</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal"></div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input class="button is-success" type="submit" value="Register">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                        <div class="text-left">
-                            You already have an account?
-                            <a class="text-next-to-button" href="/login">Login →</a>
-                        </div>
-                    </div>
-                    </div>
-                    </li>
-                </ol>
-              </main>
-            </div>
+                </div>
+            </li>
         </div>
+    </div>
 </div>
+{#<div class="section">#}
+{#        <div class="container">#}
+{#            <div class="columns">#}
+{#              <main class="column">#}
+{#                <ol class="services-list">#}
+{#                    <li class="box">#}
+{#                    <div class="columns is-centered">#}
+{#                    <div class="column is-half-desktop is-two-thirds-tablet">#}
+{#                        <p class="centered">Register as a developer or as a#}
+{#                        <a class="text-next-to-button" href="/register">user</a>#}
+{#                        </p>#}
+{#                        <br>#}
+{#                    <div class="field is-horizontal">#}
+{#                        <div class="field-label is-normal">#}
+{#                            <label class="label">Username</label>#}
+{#                        </div>#}
+{#                        <div class="field-body">#}
+{#                             <div class="field">#}
+{#                                <div class="control"><input name="user[username]" class="input" id="user_username" type="text">#}
+{#                                    <div class="help">You can use only <b>letters, digits and dashes</b></div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                    <div class="field is-horizontal">#}
+{#                        <div class="field-label is-normal">#}
+{#                            <label class="label">Password</label>#}
+{#                        </div>#}
+{#                        <div class="field-body">#}
+{#                            <div class="field">#}
+{#                                <div class="control"><input name="user[password]" class="input" id="user_password" type="password">#}
+{#                                    <div class="help">Please use a secure password that includes:#}
+{#                                        <b>letters, digits and special symbols</b>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="field is-horizontal">#}
+{#                        <div class="field-label is-normal">#}
+{#                            <label class="label">Confirmation</label>#}
+{#                        </div>#}
+{#                        <div class="field-body">#}
+{#                            <div class="field">#}
+{#                                <div class="control"><input name="user[password_confirmation]" class="input" id="user_password_confirmation" type="password">#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                        <div class="field is-horizontal">#}
+{#                            <div class="field-label is-normal">#}
+{#                                <label class="label">Email</label>#}
+{#                            </div>#}
+{#                            <div class="field-body">#}
+{#                                <div class="field">#}
+{#                                    <div class="control"><input name="user[email]" class="input" id="user_email" type="email">#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="field is-horizontal">#}
+{#                            <div class="field-label is-normal">#}
+{#                                <label class="label">Introduction</label>#}
+{#                            </div>#}
+{#                            <textarea class="textarea" placeholder="Description yourself"></textarea>#}
+{#                        </div>#}
+{##}
+{#                        <div class="field is-horizontal">#}
+{#                            <div class="field-label is-normal">#}
+{#                                <label class="label">Tags</label>#}
+{#                            </div>#}
+{#                            <div class="tags">#}
+{#                                  <span class="tag">One</span>#}
+{#                                  <span class="tag">Two</span>#}
+{#                                  <span class="tag">Three</span>#}
+{#                                  <span class="tag">Four</span>#}
+{#                                  <span class="tag">Five</span>#}
+{#                                  <span class="tag">Six</span>#}
+{#                                  <span class="tag">Seven</span>#}
+{#                                  <span class="tag">Eight</span>#}
+{#                                  <span class="tag">Nine</span>#}
+{#                                  <span class="tag">Ten</span>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    <div class="field is-horizontal">#}
+{#                        <div class="field-label is-normal">#}
+{#                        </div>#}
+{#                        <div class="field-body">#}
+{#                            <div class="field">#}
+{#                                <div class="control"><label class="checkbox">#}
+{#                                    <input name="tribune_weekly" id="tribune_weekly" type="checkbox" value="1">#}
+{#                                    you agree with the <a href="/site/terms" target="_blank">terms of service</a>#}
+{#                                </label>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="field is-horizontal">#}
+{#                        <div class="field-label is-normal">#}
+{#                        </div>#}
+{#                        <div class="field-body">#}
+{#                            <div class="field">#}
+{#                                <div class="control">#}
+{#                                    <input class="button is-success" type="submit" value="Register">#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                        <div class="text-left">#}
+{#                            You already have an account?#}
+{#                            <a class="text-next-to-button" href="/login">Login →</a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    </div>#}
+{#                    </li>#}
+{#                </ol>#}
+{#              </main>#}
+{#            </div>#}
+{#        </div>#}
+{#</div>#}
 {% endblock %}

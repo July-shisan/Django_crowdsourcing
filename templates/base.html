@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
 {#    <script src="javascript/tag.js"></script>#}
 {#    <script src="javascript/loading.js"></script>#}
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+{#    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>#}
+
 </head>
 <body>
 <section class="hero is-primary is-medium">
@@ -27,10 +29,12 @@
                     <div class="navbar-end">
                         {% if front_user %}
                             <a class="navbar-item" href="/profile/{{ front_user.userId }}">{{ front_user.username }}</a>
+                            <a class="navbar-item" href="/profile/{{ front_user.deveId }}">{{ front_user.devename }}</a>
                             <a class="navbar-item" href="/logout">Logout</a>
                         {% else %}
                             <a class="navbar-item" href="{% url 'register' %}">register</a>
-                            <a class="navbar-item" href="/login">login</a>
+{#                            <a class="navbar-item" href="/login">login</a>#}
+                            <a class="navbar-item" href="{% url 'login' %}?next={{ request.path }}">login</a>
                         {% endif %}
                     </div>
                 </div>
